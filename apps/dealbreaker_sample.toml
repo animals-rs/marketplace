@@ -1,0 +1,256 @@
+[app]
+id = "dealbreaker"
+desc = "A dating app where you match on all your DONTs, not your DOs."
+
+[app.lookup]
+gender.values = ["woman", "man", "non-binary", "genderfluid", "other", "prefer not to say"]
+relationship_status.values = ["single", "married", "divorced", "widowed"]
+relationship_goal.values = [
+  "marriage",
+  "life partner without marriage",
+  "long-term relationship",
+  "short-term relationshp",
+  "fling",
+  "hookup"
+]
+relationship_style.values = [
+  "monogamy",
+  "throuple / threesome",
+  "polygamy (3+ in a relationship)"
+]
+family_status.values = [
+  "no children",
+  "have 1 child",
+  "have 2+ children"
+]
+family_planning.values = [
+  "want 2+ children / want 2+ more children",
+  "want 1 child / want 1 more child",
+  "do not want children",
+  "unsure"
+]
+pet_status.values = [
+  "have 1 dog",
+  "have 1 cat",
+  "have 1 exotic",
+  "have 2+ dogs",
+  "have 2+ cats",
+  "have 2+ exotics",
+  "no pets"
+]
+social_trait.values = [
+  "introvert",
+  "extrovert",
+  "ambivert (balanced)",
+  "omnivert (extreme swings)",
+  "otrovert (value deep connection)"
+]
+hobby = [
+  "hiking",
+  "camping",
+  "running",
+  "basketball",
+  "baseball",
+  "soccer / football",
+  "American football",
+  "polo",
+  "swimming",
+  "horseback riding",
+  "gym / workout",
+  "cycling",
+  "reading",
+  "writing",
+  "yoga",
+  "pilates",
+  "tai chi",
+  "taekwando",
+  "karate",
+  "boxing",
+  "wrestling"
+]
+job = [
+  "janitor",
+  "teacher",
+  "property manager",
+  "principal",
+  "researcher / scientist",
+  "software developer",
+  "IT",
+  "trades",
+  "doctor",
+  "surgeon",
+  "pharmacist",
+  "dentist",
+  "lawyer",
+  "military",
+  "politc",
+  "engineer",
+  "business owner",
+  "nurse",
+  "nurse tech",
+  "veterinarian",
+  "vet assistant",
+  "therapist",
+  "counsellor",
+  "student",
+  "professional athlete",
+  "marketing",
+  "product",
+  "UX",
+  "finance",
+  "teller",
+  "tutor",
+  "nanny",
+  "bartender",
+  "server",
+  "religious leader",
+  "non-profit"
+]
+job_status = [
+  "full-time employment",
+  "part-time employment",
+  "self-employed",
+  "seasonal worker",
+  "contract",
+  "unemployed"
+]
+education = [
+  "less than high school",
+  "high school diploma or equivalent (i.e. GED)",
+  "certificate",
+  "associates",
+  "bachelors",
+  "masters",
+  "professional (i.e. JD, MD)",
+  "doctoral (i.e. PhD)"
+]
+drinking = [
+  "never",
+  "socially",
+  "frequently",
+  "prefer not to say"
+]
+nicotine = [
+  "never",
+  "socially",
+  "regularly",
+  "trying to quit",
+  "prefer not to say"
+]
+cannabis = [
+  "never",
+  "socially",
+  "regularly",
+  "trying to quit",
+  "prefer not to say"
+]
+religion = [
+  "agnostic",
+  "atheist",
+  "buddhist",
+  "christian",
+  "hindu",
+  "indigenous spirituality",
+  "jewish",
+  "muslim",
+  "spiritual but not religious",
+  "other",
+  "prefer not to say"
+]
+religious_practice = [
+  "not practicing",
+  "somewhat practicing",
+  "very practicing"
+]
+political_view = [
+  "liberal",
+  "moderate",
+  "conservative",
+  "libertarian",
+  "apolitical",
+  "other",
+  "prefer not to say"
+]
+diet = [
+  "omnivore",
+  "carnivore",
+  "vegetarian",
+  "vegan",
+  "pescatarian",
+  "kosher",
+  "halal",
+  "gluten-free",
+  "other"
+]
+
+[app.profile]
+gender = { "type" = { "ref" = "lookup", "val" = "gender" }, "desc" = "How do you identify your gender?", "match" = true, priority = 1 }
+attracted_to = { "array" = true, "type" = { "ref" = "lookup", "val" = "gender" }, "desc" = "Which genders are you interested in dating?", "match" = true, priority = 2 }
+family_planning = { "type" = { "ref" = "lookup", "val" = "family_planning" }, "desc" = "How many children do you want or how many more do you want?", "match" = true, "inverse" = true, priority = 3 }
+relationship_goal = { "array" = true, "type" = { "ref" = "lookup", "val" = "relationship_goal" }, "desc" = "The relationship goal you're looking for in your next dynamic.", "match" = true, "inverse" = true, priority = 4 }
+relationship_status = { "type" = { "ref" = "lookup", "val" = "relationship_status" }, "desc" = "Your relationship status.", "match" = true, "inverse" = true, priority = 5 }
+family_status = { "type" = { "ref" = "lookup", "val" = "family_status" }, "desc" = "How many children do you have?", "match" = true, "inverse" = true, priority = 6 }
+relationship_style = { "array" = true, "type" = { "ref" = "lookup", "val" = "relationship_style" }, "desc" = "The relationship style you're looking for in your next dynamic.", "match" = true, "inverse" = true, priority = 7 }
+religion = { "type" = { "ref" = "lookup", "val" = "religion" }, "desc" = "What is your religion or spiritual belief?", "match" = true, "inverse" = true, priority = 8 }
+religious_practice = { "type" = { "ref" = "lookup", "val" = "religious_practice" }, "desc" = "How observant are you of your religion or spiritual belief?", "match" = true, "inverse" = true, priority = 9 }
+political_view = { "type" = { "ref" = "lookup", "val" = "political_view" }, "desc" = "How would you describe your political views?", "match" = true, "inverse" = true, priority = 10 }
+drinking = { "type" = { "ref" = "lookup", "val" = "drinking" }, "desc" = "How often do you drink?", "match" = true, "inverse" = true, priority = 11 }
+nicotine = { "type" = { "ref" = "lookup", "val" = "nicotine" }, "desc" = "How often do you use nicotine?", "match" = true, "inverse" = true, priority = 12 }
+cannabis = { "type" = { "ref" = "lookup", "val" = "cannabis" }, "desc" = "How often do you use cannabis?", "match" = true, "inverse" = true, priority = 13 }
+diet = { "type" = { "ref" = "lookup", "val" = "diet" }, "desc" = "What best describes your diet?", "match" = true, "inverse" = true, priority = 14 }
+education = { "type" = { "ref" = "lookup", "val" = "education" }, "desc" = "What is the highest level of education you've achieved?", "match" = true, "inverse" = true, priority = 15 }
+job_status = { "type" = { "ref" = "lookup", "val" = "job_status" }, "desc" = "What is your current job status?", "match" = true, "inverse" = true, priority = 16 }
+pet_status = { "array" = true, "type" = { "ref" = "lookup", "val" = "pet_status" }, "desc" = "How may pets do you have and what kind?", "match" = true, "inverse" = true, priority = 17 }
+social_trait = { "array" = true, "type" = { "ref" = "lookup", "val" = "social_trait" }, "desc" = "Which social trait(s) do you identify with?", "match" = true, "inverse" = true, priority = 18 }
+languages = { "array" = true, "type" = { "ref" = "lookup", "val" = "lang", "global" = true }, "desc" = "What languages are you comfortable communicating in?", "match" = true, "inverse" = true, priority = 19 }
+job = { "array" = true, "type" = { "ref" = "lookup", "val" = "job" }, "desc" = "What do you do for work?", "match" = true, "inverse" = true, priority = 20 }
+hobby = { "array" = true, "type" = { "ref" = "lookup", "val" = "hobby" }, "desc" = "What do you enjoy doing in your free time?", "match" = true, "inverse" = true, priority = 21 }
+
+[[app.context]]
+name = "message"
+desc = "Connect to someone who resonates with you."
+public = false
+geo = true
+threads = true
+timeout = "90d"
+
+[[app.context]]
+name = "intl_message"
+desc = "Connect to someone who resonates with you."
+public = false
+rename = "message"
+geo = false
+threads = true
+timeout = "90d"
+
+[[app.context]]
+name = "info_exchange"
+desc = "Exchange info after having connected with someone."
+public = "false"
+attached = "message"
+
+[app.context.vcard]
+full_name = "fn"                                 # real name, once you're ready to share it
+nickname = "nickname"                            # username / handle
+photo = "photo"                                  # profile picture
+bday = { "field" = "bday", "optional" = true }    # birthday
+tel = { "field" = "tel", "optional" = true }      # contact phone number
+email = { "field" = "email", "optional" = true }  # contact email
+url = { "field" = "url", "optional" = true }      # social media / dating profile link
+
+[[app.context]]
+name = "intl_info_exchange"
+desc = "Exchange info after having connected with someone."
+public = "false"
+rename = "info_exchange"
+attached = "intl_message"
+
+[app.context.vcard]
+full_name = "fn"                                 # real name, once you're ready to share it
+nickname = "nickname"                            # username / handle
+photo = "photo"                                  # profile picture
+bday = { "field" = "bday", "optional" = true }    # birthday
+tel = { "field" = "tel", "optional" = true }      # contact phone number
+email = { "field" = "email", "optional" = true }  # contact email
+url = { "field" = "url", "optional" = true }      # social media / dating profile link
+

@@ -1,0 +1,123 @@
+[app]
+id = "cookbook"
+desc = "A place for all things cooking and baking."
+
+[app.lookup]
+role.values = ["student", "professional", "hobbyist", "recreational", "homemaker", "customer"]
+
+[app.audit]
+email = true
+
+# Profile attributes that will be shown with public contexts
+[app.profile]
+# Look up from app.lookup block within TOML because global is false
+# If global value was not defined in type, this would default to app.lookup then look in global
+# The 'desc' field is written in second POV to be used as placeholder text to give the user more context on the field to be filled
+# The 'search' boolean indicates whether the field is searchable; defaults to false if this field does not exist
+# The 'priority' will be use to rank profiles on what to show first to use based on search term against "profile"
+role = { "type" = { "ref" = "lookup", "val" = "role", "global" = false }, "desc" = "Your professional role in the culinary world." }
+bio = { "type" = "text", "desc" = "Tell us about yourself.", "search" = true, priority = 2 }
+# Look up from globally configured list in app, config/global_lookup.toml
+languages = { "array" = true, "type" = { "ref" = "lookup", "val" = "lang", "global" = true }, "desc" = "Languages you are comfortable providing services with or interacting in.", "search" = true, priority = 1 }
+
+[[app.context]]
+name = "recipe"
+desc = "A recipe you'd like to share with others."
+public = true
+geo = false
+threads = true
+
+[app.context.vcard]
+nickname = "nickname"   # username / handle
+url = "url"             # food blog, portfolio, or social link
+
+[app.context.fields]
+name = { "type" = "text", "desc" = "Name of your recipe.", "search" = true, priority = 1 }
+description = { "type" = "text", "desc" = "A description of your recipe.", "search" = true, priority = 2}
+steps = { "array" = true, "type" = "text", "desc" = "A list of steps in your recipe." }
+ingredients = { "array" = true, "type" = "text", "desc" = "A list of ingredients in your recipe.", "search" = true, priority = 3 }
+
+[[app.context]]
+name = "private_recipe"
+desc = "A recipe you'd like to share in private."
+public = false
+geo = false
+threads = true
+# Rename in p2p request to end user receiving request
+rename = "recipe"
+
+[app.context.fields]
+name = { "type" = "text", "desc" = "Name of your recipe." }
+description = { "type" = "text", "desc" = "A description of your recipe." }
+steps = { "array" = true, "type" = "text", "desc" = "A list of steps in your recipe." }
+ingredients = { "array" = true, "type" = "text", "desc" = "A list of ingredients in your recipe." }
+
+[[app.context]]
+name = "service"
+desc = "A service you'd like to provide for others."
+public = true
+geo = true
+
+[app.context.vcard]
+nickname = "nickname"   # username / handle
+url = "url"             # food blog, portfolio, or social link
+
+[app.context.fields]
+name = { "type" = "text", "desc" = "Name of the service." }
+fee = { "type" = "money", "desc" = "Fee in stablecoin to charge service in." }
+
+# Contact gets initiated based on a previous context
+# Thread is open in this context to enable back-and-forth communication through a channel
+# Perhaps, iron out a few details in the threads before committing.
+[[app.context]]
+name = "service_request"
+desc = "A service you'd like to request from others."
+public = false
+threads = true
+attached = "service"
+timeout = "2w"
+
+[[app.context]]
+name = "service_invoice"
+desc = "A response to a service request."
+# Since this is a private context, both parties must exchange the listed vcard details
+public = false
+# Audited by enabled email copy
+audit = true
+attached = "service_request"
+
+# Since this is a private request, the receiver must agree to share the same listed vcard fields before receiving this context
+[app.context.vcard]
+full_name = "fn"                                          # display name
+nickname = "nickname"                                     # username / handle
+photo = "photo"                                           # profile picture
+email = "email"                                           # contact email
+tel = "tel"                                               # contact phone
+org = "org"                                               # restaurant, bakery, or business name
+title = "title"                                           # professional title e.g. "Pastry Chef"
+url = "url"                                               # food blog, portfolio, or social link
+service_location = { "field" = "adr", "optional" = true }   # service location
+
+[app.context.fields]
+service_name = { "context" = "service", "field" = "name" }
+service_fee = { "context" = "service", "field" = "fee" }
+service_date = { "type" = "timestamp", "desc" = "Agreed upon date to provide the service." }
+
+[[app.context]]
+name = "service_payment"
+desc = "Monetary payment for service."
+public = false
+audit = true
+attached = "service_invoice"
+
+[app.context.payment]
+context = "service"
+fee = "fee"
+
+[[app.context]]
+name = "service_receipt"
+desc = "A receipt for paid services."
+public = false
+audit = true
+attached = "service_payment"
+receipt = true
