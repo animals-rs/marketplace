@@ -45,7 +45,7 @@ social_trait.values = [
   "omnivert (extreme swings)",
   "otrovert (value deep connection)"
 ]
-hobby = [
+hobby.values = [
   "hiking",
   "camping",
   "running",
@@ -68,7 +68,7 @@ hobby = [
   "boxing",
   "wrestling"
 ]
-job = [
+job.values = [
   "janitor",
   "teacher",
   "property manager",
@@ -106,7 +106,7 @@ job = [
   "religious leader",
   "non-profit"
 ]
-job_status = [
+job_status.values = [
   "full-time employment",
   "part-time employment",
   "self-employed",
@@ -114,7 +114,7 @@ job_status = [
   "contract",
   "unemployed"
 ]
-education = [
+education.values = [
   "less than high school",
   "high school diploma or equivalent (i.e. GED)",
   "certificate",
@@ -124,27 +124,27 @@ education = [
   "professional (i.e. JD, MD)",
   "doctoral (i.e. PhD)"
 ]
-drinking = [
+drinking.values = [
   "never",
   "socially",
   "frequently",
   "prefer not to say"
 ]
-nicotine = [
+nicotine.values = [
   "never",
   "socially",
   "regularly",
   "trying to quit",
   "prefer not to say"
 ]
-cannabis = [
+cannabis.values = [
   "never",
   "socially",
   "regularly",
   "trying to quit",
   "prefer not to say"
 ]
-religion = [
+religion.values = [
   "agnostic",
   "atheist",
   "buddhist",
@@ -157,12 +157,12 @@ religion = [
   "other",
   "prefer not to say"
 ]
-religious_practice = [
+religious_practice.values = [
   "not practicing",
   "somewhat practicing",
   "very practicing"
 ]
-political_view = [
+political_view.values = [
   "liberal",
   "moderate",
   "conservative",
@@ -171,7 +171,7 @@ political_view = [
   "other",
   "prefer not to say"
 ]
-diet = [
+diet.values = [
   "omnivore",
   "carnivore",
   "vegetarian",
@@ -233,10 +233,10 @@ attached = "message"
 full_name = "fn"                                 # real name, once you're ready to share it
 nickname = "nickname"                            # username / handle
 photo = "photo"                                  # profile picture
-bday = { "field" = "bday", "optional" = true }    # birthday
-tel = { "field" = "tel", "optional" = true }      # contact phone number
-email = { "field" = "email", "optional" = true }  # contact email
-url = { "field" = "url", "optional" = true }      # social media / dating profile link
+bday = { "prop" = "bday", "optional" = true }    # birthday
+tel = { "prop" = "tel", "optional" = true }      # contact phone number
+email = { "prop" = "email", "optional" = true }  # contact email
+url = { "prop" = "url", "optional" = true }      # social media / dating profile link
 
 [[app.context]]
 name = "intl_info_exchange"
@@ -249,8 +249,8 @@ attached = "intl_message"
 full_name = "fn"                                 # real name, once you're ready to share it
 nickname = "nickname"                            # username / handle
 photo = "photo"                                  # profile picture
-bday = { "field" = "bday", "optional" = true }    # birthday
-tel = { "field" = "tel", "optional" = true }      # contact phone number
-email = { "field" = "email", "optional" = true }  # contact email
-url = { "field" = "url", "optional" = true }      # social media / dating profile link
+bday = { "prop" = "bday", "optional" = true }    # birthday
+tel = { "prop" = "tel", "optional" = true }      # contact phone number
+email = { "prop" = "email", "optional" = true }  # contact email
+url = { "prop" = "url", "optional" = true }      # social media / dating profile link
 

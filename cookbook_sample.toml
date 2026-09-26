@@ -96,10 +96,10 @@ tel = "tel"                                               # contact phone
 org = "org"                                               # restaurant, bakery, or business name
 title = "title"                                           # professional title e.g. "Pastry Chef"
 url = "url"                                               # food blog, portfolio, or social link
-service_location = { "field" = "adr", "optional" = true }   # service location
+service_location = { "prop" = "adr", "optional" = true }   # service location
 
 [app.context.fields]
-service_name = { "context" = "service", "field" = "name" }
+service_name = { "context" = "service", "field" = "name", "desc" = "Name of the service being invoiced." }
 service_fee = { "context" = "service", "field" = "fee" }
 service_date = { "type" = "timestamp", "desc" = "Agreed upon date to provide the service." }
 
@@ -111,8 +111,7 @@ audit = true
 attached = "service_invoice"
 
 [app.context.payment]
-context = "service"
-fee = "fee"
+field = "service_fee"
 
 [[app.context]]
 name = "service_receipt"
