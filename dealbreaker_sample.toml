@@ -9,13 +9,12 @@ relationship_goal.values = [
   "marriage",
   "life partner without marriage",
   "long-term relationship",
-  "short-term relationshp",
-  "fling",
-  "hookup"
+  "short-term relationship",
+  "fling"
 ]
 relationship_style.values = [
   "monogamy",
-  "throuple / threesome",
+  "non-monogamy",
   "polygamy (3+ in a relationship)"
 ]
 family_status.values = [
@@ -226,7 +225,7 @@ timeout = "90d"
 [[app.context]]
 name = "info_exchange"
 desc = "Exchange info after having connected with someone."
-public = "false"
+public = false
 attached = "message"
 
 [app.context.vcard]
@@ -241,7 +240,7 @@ url = { "prop" = "url", "optional" = true }      # social media / dating profile
 [[app.context]]
 name = "intl_info_exchange"
 desc = "Exchange info after having connected with someone."
-public = "false"
+public = false
 rename = "info_exchange"
 attached = "intl_message"
 
@@ -253,4 +252,3 @@ bday = { "prop" = "bday", "optional" = true }    # birthday
 tel = { "prop" = "tel", "optional" = true }      # contact phone number
 email = { "prop" = "email", "optional" = true }  # contact email
 url = { "prop" = "url", "optional" = true }      # social media / dating profile link
-

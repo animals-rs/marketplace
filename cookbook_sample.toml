@@ -99,6 +99,7 @@ url = "url"                                               # food blog, portfolio
 service_location = { "prop" = "adr", "optional" = true }   # service location
 
 [app.context.fields]
+# Reference to fields in precursor context (refer to 'attached' contexts in interaction chain)
 service_name = { "context" = "service", "field" = "name", "desc" = "Name of the service being invoiced." }
 service_fee = { "context" = "service", "field" = "fee" }
 service_date = { "type" = "timestamp", "desc" = "Agreed upon date to provide the service." }
@@ -111,6 +112,7 @@ audit = true
 attached = "service_invoice"
 
 [app.context.payment]
+context = "service_invoice"
 field = "service_fee"
 
 [[app.context]]
